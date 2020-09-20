@@ -1,51 +1,77 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
-//void main() {
-//  runApp(MyApp());
-//}
-void main() => runApp(MyApp());
+import 'package:flutter_app/page_one.dart';
+import 'home_page.dart';
+import 'page_one.dart';
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _MyAppState();
-  }
+void main() {
+  runApp(new MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0;
-
-  void _answerQuestion() {
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
-    print(_questionIndex);
-  }
+class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s is your favourite colour?',
-      'Whta\'s is your favourite car'
-    ];
-    // TODO: implement build
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("My First App"),
-        ),
-        body: Column(
-          children: [
-            Question(questions[_questionIndex]),
-           Answer(),
-           Answer(),
-           Answer(), 
-        
-          ],
-        ),
+    return new MaterialApp(
+
+      theme: new ThemeData(
+      
+        primarySwatch: Colors.purple,
+        primaryColor: defaultTargetPlatform == TargetPlatform.iOS 
+        ? Colors.grey[50]
+        :null
       ),
+      
+      home: new HomePage(),
+      // routes: <String, WidgetBuilder> {
+      //   "/a" : (BuildContext contet) => new PageOne("Page One"), 
+      // }
     );
   }
 }
+
+// void main() => runApp(MyApp());
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   State<StatefulWidget> createState() {
+//     // TODO: implement createState
+//     return _MyAppState();
+//   }
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   var _questionIndex = 0;
+
+//   void _answerQuestion() {
+//     setState(() {
+//       _questionIndex = _questionIndex + 1;
+//     });
+//     print(_questionIndex);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var questions = [
+//       'What\'s is your favourite colour?',
+//       'Whta\'s is your favourite car'
+//     ];
+//     // TODO: implement build
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("My First App"),
+//         ),
+//         body: Column(
+//           children: [
+//             Question(questions[_questionIndex]),
+//            Answer(),
+//            Answer(),
+//            Answer(),
+
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+//}
