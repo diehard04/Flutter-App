@@ -1,51 +1,18 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
-//void main() {
-//  runApp(MyApp());
-//}
-void main() => runApp(MyApp());
+import 'package:flutter_app/pages/home_page.dart';
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _MyAppState();
-  }
-}
+void main() => runApp(new MyApp());
 
-class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0;
-
-  void _answerQuestion() {
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
-    print(_questionIndex);
-  }
-
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s is your favourite colour?',
-      'Whta\'s is your favourite car'
-    ];
-    // TODO: implement build
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("My First App"),
-        ),
-        body: Column(
-          children: [
-            Question(questions[_questionIndex]),
-           Answer(),
-           Answer(),
-           Answer(), 
-        
-          ],
-        ),
+    return new MaterialApp(
+      title: 'NavigationDrawer Demo',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: new HomePage(),
     );
   }
 }
