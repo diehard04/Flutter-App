@@ -7,50 +7,6 @@ import 'package:flutter_app/viewcontrollers/HomePage.dart';
 
 void main() => runApp(GridList());
 
-import 'package:flutter_app/page_one.dart';
-import 'home_page.dart';
-import 'page_one.dart';
-
-void main() {
-  runApp(new MyApp());
-}
-
-class MyApp extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: "Roboto",
-        iconTheme: IconThemeData(color: Colors.black),
-        primaryTextTheme: TextTheme(
-          title: TextStyle(color: Colors.black),
-        ),
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
-
-    return new MaterialApp(
-
-      theme: new ThemeData(
-      
-        primarySwatch: Colors.purple,
-        primaryColor: defaultTargetPlatform == TargetPlatform.iOS 
-        ? Colors.grey[50]
-        :null
-      ),
-      
-      home: new HomePage(),
-      // routes: <String, WidgetBuilder> {
-      //   "/a" : (BuildContext contet) => new PageOne("Page One"), 
-      // }
-    );
-  }
-}
-
 // void main() => runApp(MyApp());
 
 // class MyApp extends StatefulWidget {
