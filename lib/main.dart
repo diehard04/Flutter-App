@@ -4,11 +4,30 @@ import 'package:flutter_app/cookbook/GridList.dart';
 import 'package:flutter_app/viewcontrollers/HomePage.dart';
 import 'package:flutter_app/vnoc/AtcVnocDashBoardReports.dart';
 import 'package:flutter_app/vnoc/SplashScreen.dart';
+import 'package:flutter_app/vnoc/Constant.dart';
 
 //void main() => runApp(MyApp());
 
 //void main() => runApp(GridList());
-void main() => runApp(SplashScreen());
+void main() {
+  runApp(new MaterialApp(
+    title: 'ATC Reports',
+    debugShowCheckedModeBanner: false,
+    theme: new ThemeData(
+        accentColor: Colors.black,
+        primaryColor: Color(0xFFffffff),
+        primaryColorDark: Color(0xffffff)),
+    home: new SplashScreen(),
+    routes: <String, WidgetBuilder>{
+      HOME_SCREEN: (BuildContext context) {
+        return new AtcVnocDashBoardReports();
+      },
+      ANIMATED_SPLASH: (BuildContext context) {
+        return new SplashScreen();
+      },
+    },
+  ));
+}
 
 // void main() => runApp(MyApp());
 
