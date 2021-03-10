@@ -5,11 +5,7 @@ import 'package:flutter_app/Models/Utility.dart';
 import 'NotePage.dart';
 import 'StaggeredView.dart';
 
-enum viewType {
-  List,
-  Staggered
-}
-
+enum viewType { List, Staggered }
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,34 +13,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var notesViewType;
 
-  var notesViewType ;
-  @override void initState() {
+  @override
+  void initState() {
     notesViewType = viewType.Staggered;
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return
-      Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: AppBar(brightness: Brightness.light,
-          actions: _appBarActions(),
-          elevation: 1,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text("Notes"),
-        ),
-        body: SafeArea(child:   _body(), right: true, left:  true, top: true, bottom: true,),
-        bottomSheet: _bottomBar(),
-      );
-
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        brightness: Brightness.light,
+        actions: _appBarActions(),
+        elevation: 1,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text("Notes"),
+      ),
+      body: SafeArea(
+        child: _body(),
+        right: true,
+        left: true,
+        top: true,
+        bottom: true,
+      ),
+      bottomSheet: _bottomBar(),
+    );
   }
 
   Widget _body() {
     print(notesViewType);
-    return Container(child: StaggeredGridPage(notesViewType: notesViewType,));
+    return Container(
+        child: StaggeredGridPage(
+      notesViewType: notesViewType,
+    ));
   }
 
   Widget _bottomBar() {
@@ -62,37 +66,36 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   void _newNoteTapped(BuildContext ctx) {
     // "-1" id indicates the note is not new
-    var emptyNote = new Note(-1, "", "", DateTime.now(), DateTime.now(), Colors.white);
-    Navigator.push(ctx,MaterialPageRoute(builder: (ctx) => NotePage(emptyNote)));
+    var emptyNote =
+        new Note(-1, "", "", DateTime.now(), DateTime.now(), Colors.white);
+    Navigator.push(
+        ctx, MaterialPageRoute(builder: (ctx) => NotePage(emptyNote)));
   }
 
-  void _toggleViewType(){
+  void _toggleViewType() {
     setState(() {
       CentralStation.updateNeeded = true;
-      if(notesViewType == viewType.List)
-      {
+      if (notesViewType == viewType.List) {
         notesViewType = viewType.Staggered;
-
       } else {
         notesViewType = viewType.List;
       }
-
     });
   }
 
   List<Widget> _appBarActions() {
-
     return [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 12),
         child: InkWell(
           child: GestureDetector(
-            onTap: () => _toggleViewType() ,
+            onTap: () => _toggleViewType(),
             child: Icon(
-              notesViewType == viewType.List ?  Icons.developer_board : Icons.view_headline,
+              notesViewType == viewType.List
+                  ? Icons.developer_board
+                  : Icons.view_headline,
               color: CentralStation.fontColor,
             ),
           ),
