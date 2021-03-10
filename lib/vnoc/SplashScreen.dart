@@ -60,7 +60,7 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
                 
                 children: <Widget>[
                   Padding(padding: EdgeInsets.only(bottom: 30.0),
-                    child: new Image.asset('assests/images/powered_by.png', height: 25.0, fit: BoxFit.scaleDown,)
+                    child: new Image.asset('assets/images/powered_by.png', height: 25.0, fit: BoxFit.scaleDown,)
                   )
                 ],
               ),

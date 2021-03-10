@@ -48,13 +48,13 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: Assets/Fonts/Roboto-Regular.ttf
-        - asset: Assets/Fonts/Roboto-Bold.ttf
+        - asset: assets/Fonts/Roboto-Regular.ttf
+        - asset: assets/Fonts/Roboto-Bold.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
   assets:
-    - Assets/Fonts/Roboto-Regular.ttf
+    - assets/Fonts/Roboto-Regular.ttf
     - assets/images/logo.png
     - assets/images/powered_by.png
     - assets/images/icon_list.png
