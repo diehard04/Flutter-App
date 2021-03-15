@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/Constant.dart';
-import 'package:flutter_app/vnoc/Login.dart';
+import 'file:///E:/DEMO/Flutter-App/lib/vnoc/login/Login.dart';
 import 'Constant.dart';
 
 class SplashScreen extends StatefulWidget {

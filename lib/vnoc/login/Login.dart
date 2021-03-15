@@ -118,7 +118,17 @@ class LoginState extends State<Login> {
                                   child: TextField(
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: "Email or Phone number",
+                                        hintText: "Account ID",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[400])),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "User Name",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[400])),
                                   ),
