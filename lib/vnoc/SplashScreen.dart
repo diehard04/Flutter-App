@@ -1,10 +1,11 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/Constant.dart';
+import 'package:flutter_app/vnoc/Login.dart';
+import 'Constant.dart';
 
 class SplashScreen extends StatefulWidget {
+
   @override
   SplashScreenState createState() {
     return SplashScreenState();
@@ -23,7 +24,11 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
+    //Navigator.of(context).pushReplacementNamed(LOGIN);
+    Navigator.push(context, new MaterialPageRoute(
+        builder: (context) =>
+        new Login())
+    );
   }
 
   @override
