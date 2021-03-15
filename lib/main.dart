@@ -18,14 +18,6 @@ void main() {
         primaryColor: Color(0xFFffffff),
         primaryColorDark: Color(0xffffff)),
     home: new SplashScreen(),
-    routes: <String, WidgetBuilder>{
-      HOME_SCREEN: (BuildContext context) {
-        return new AtcVnocDashBoardReports();
-      },
-      ANIMATED_SPLASH: (BuildContext context) {
-        return new SplashScreen();
-      },
-    },
   ));
 }
 
