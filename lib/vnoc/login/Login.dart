@@ -2,13 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/animations/FadeAnimation.dart';
 
 class Login extends StatefulWidget {
-  @override
-  LoginState createState() {
-    return LoginState();
-  }
+
+  Login({this.accountId, this.userName,this.password});
+  final String accountId;
+  final String userName;
+  final String password;
+
+  LoginState createState() => LoginState();
+
 }
 
 class LoginState extends State<Login> {
+  String _status = 'no-action';
+  String _accountId, _userName, _password;
+
+  final formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TextEditingController _controllerAccountId,_controllerUsername, _controllerPassword;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -160,11 +172,7 @@ class LoginState extends State<Login> {
                                   Color.fromRGBO(143, 148, 251, .6),
                                 ])),
                             child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                              child: Text("Login", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                               ),
                             ),
                           )),
