@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/animations/FadeAnimation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
 
@@ -23,7 +24,10 @@ class LoginState extends State<Login> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    _controllerAccountId = TextEditingController(text: widget?.accountId?? "");
+    _controllerUsername = TextEditingController(text: widget?.userName?? "");
+    _controllerPassword = TextEditingController();
+    _loadUserName();
     super.initState();
   }
 
@@ -208,4 +212,20 @@ class LoginState extends State<Login> {
           ),
         ));
   }
+
+
+  void _loadUserName() async{
+    try {
+      SharedPreferences _pref = await SharedPreferences.getInstance();
+      var _username = _pref.getString("saved_username")?? "";
+      var _rememberme = _pref.getString("remember_me") ?? false;
+
+      if (_rememberme) {
+        _controllerUsername.text = _username ?? "";
+      }
+    } catch (e){
+      print(e);
+    }
+  }
+
 }
