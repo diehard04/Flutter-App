@@ -127,32 +127,46 @@ class LoginState extends State<Login> {
                                       border: Border(
                                           bottom: BorderSide(
                                               color: Colors.grey[100]))),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Account ID",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[400])),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(border: InputBorder.none, hintText: "Account ID",
+                                        hintStyle: TextStyle(color: Colors.grey[400])),
+                                    validator: (val) => val.length < 1 ? 'Account Id required' : null,
+                                    onSaved: (val) => _accountId = val,
+                                    obscureText: false,
+                                    keyboardType: TextInputType.text,
+                                    controller: _controllerAccountId,
+                                    autocorrect: false,
                                   ),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(8.0),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "User Name",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[400])),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(border: InputBorder.none, hintText: "User Name",
+                                        hintStyle: TextStyle(color: Colors.grey[400])),
+                                    validator: (val) =>
+                                    val.length < 1 ? 'User Name Required' : null,
+                                    onSaved: (val) => _userName = val,
+                                    obscureText: true,
+                                    controller: _controllerUsername,
+                                    keyboardType: TextInputType.text,
+                                    autocorrect: false,
                                   ),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(8.0),
-                                  child: TextField(
+                                  child: TextFormField(
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Password",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[400])),
+                                    validator: (val) =>
+                                    val.length < 1 ? 'Password Required' : null,
+                                    onSaved: (val) => _password = val,
+                                    obscureText: true,
+                                    controller: _controllerPassword,
+                                    keyboardType: TextInputType.text,
+                                    autocorrect: false,
                                   ),
                                 )
                               ],
