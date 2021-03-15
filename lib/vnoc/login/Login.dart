@@ -3,14 +3,13 @@ import 'package:flutter_app/vnoc/animations/FadeAnimation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
+  Login({this.accountId, this.userName, this.password});
 
-  Login({this.accountId, this.userName,this.password});
   final String accountId;
   final String userName;
   final String password;
 
   LoginState createState() => LoginState();
-
 }
 
 class LoginState extends State<Login> {
@@ -20,20 +19,24 @@ class LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  TextEditingController _controllerAccountId,_controllerUsername, _controllerPassword;
+  TextEditingController _controllerAccountId,
+      _controllerUsername,
+      _controllerPassword;
 
   @override
   void initState() {
-    _controllerAccountId = TextEditingController(text: widget?.accountId?? "");
-    _controllerUsername = TextEditingController(text: widget?.userName?? "");
+    _controllerAccountId = TextEditingController(text: widget?.accountId ?? "");
+    _controllerUsername = TextEditingController(text: widget?.userName ?? "");
     _controllerPassword = TextEditingController();
     _loadUserName();
     super.initState();
+    print(_status);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
@@ -132,9 +135,14 @@ class LoginState extends State<Login> {
                                           bottom: BorderSide(
                                               color: Colors.grey[100]))),
                                   child: TextFormField(
-                                    decoration: InputDecoration(border: InputBorder.none, hintText: "Account ID",
-                                        hintStyle: TextStyle(color: Colors.grey[400])),
-                                    validator: (val) => val.length < 1 ? 'Account Id required' : null,
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "Account ID",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[400])),
+                                    validator: (val) => val.length < 1
+                                        ? 'Account Id required'
+                                        : null,
                                     onSaved: (val) => _accountId = val,
                                     obscureText: false,
                                     keyboardType: TextInputType.text,
@@ -145,10 +153,14 @@ class LoginState extends State<Login> {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextFormField(
-                                    decoration: InputDecoration(border: InputBorder.none, hintText: "User Name",
-                                        hintStyle: TextStyle(color: Colors.grey[400])),
-                                    validator: (val) =>
-                                    val.length < 1 ? 'User Name Required' : null,
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "User Name",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[400])),
+                                    validator: (val) => val.length < 1
+                                        ? 'User Name Required'
+                                        : null,
                                     onSaved: (val) => _userName = val,
                                     obscureText: true,
                                     controller: _controllerUsername,
@@ -164,8 +176,9 @@ class LoginState extends State<Login> {
                                         hintText: "Password",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[400])),
-                                    validator: (val) =>
-                                    val.length < 1 ? 'Password Required' : null,
+                                    validator: (val) => val.length < 1
+                                        ? 'Password Required'
+                                        : null,
                                     onSaved: (val) => _password = val,
                                     obscureText: true,
                                     controller: _controllerPassword,
@@ -179,21 +192,14 @@ class LoginState extends State<Login> {
                       SizedBox(
                         height: 30,
                       ),
-                      FadeAnimation(
-                          2,
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(colors: [
-                                  Color.fromRGBO(143, 148, 251, 1),
-                                  Color.fromRGBO(143, 148, 251, .6),
-                                ])),
-                            child: Center(
-                              child: Text("Login", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          )),
+                      RaisedButton(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: _loadUserName,
+                      ),
                       SizedBox(
                         height: 70,
                       ),
@@ -213,19 +219,17 @@ class LoginState extends State<Login> {
         ));
   }
 
-
-  void _loadUserName() async{
+  void _loadUserName() async {
     try {
       SharedPreferences _pref = await SharedPreferences.getInstance();
-      var _username = _pref.getString("saved_username")?? "";
+      var _username = _pref.getString("saved_username") ?? "";
       var _rememberme = _pref.getString("remember_me") ?? false;
 
       if (_rememberme) {
         _controllerUsername.text = _username ?? "";
       }
-    } catch (e){
+    } catch (e) {
       print(e);
     }
   }
-
 }
