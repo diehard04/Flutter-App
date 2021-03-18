@@ -1,5 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app/vnoc/AtcVnocDashBoardReports.dart';
 import 'package:flutter_app/vnoc/animations/FadeAnimation.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,8 +33,9 @@ class LoginState extends State<Login> {
   signIn(String email, pass) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {'email': email, 'password': pass};
+    String loginURL = 'https://vnoc.atctower.in/VNOCMobileApi/AuthenticateUser';
     var jsonResponse = null;
-    var response = await http.post("YOUR_BASE_URL", body: data);
+    var response = await http.post(loginURL, body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       if (jsonResponse != null) {
@@ -39,7 +44,7 @@ class LoginState extends State<Login> {
         });
         sharedPreferences.setString("token", jsonResponse['token']);
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => MainPage()),
+            MaterialPageRoute(builder: (BuildContext context) => AtcVnocDashBoardReports()),
             (Route<dynamic> route) => false);
       }
     } else {
@@ -191,30 +196,19 @@ class LoginState extends State<Login> {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextFormField(
-                                    controller: accountIdController,
+                                    controller: passwordController,
                                     cursorColor: Colors.white,
                                     style: TextStyle(color: Colors.white70),
                                     decoration: InputDecoration(
                                       icon: Icon(Icons.email,
                                           color: Colors.white70),
-                                      hintText: "Account Id",
+                                      hintText: "Password",
                                       border: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                               color: Colors.white70)),
                                       hintStyle:
-                                          TextStyle(color: Colors.white70),
+                                          TextStyle(color: Colors.grey[400]),
                                     ),
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Password",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[400])),
-                                    validator: (val) => val.length < 1
-                                        ? 'Password Required'
-                                        : null,
-                                    onSaved: (val) => _userPassword = val,
-                                    obscureText: true,
-                                    keyboardType: TextInputType.text,
                                   ),
                                 )
                               ],
@@ -236,7 +230,8 @@ class LoginState extends State<Login> {
                             setState(() {
                               _isLoading = true;
                             });
-                            signIn(_userName, _userPassword);
+                            signIn(userNameController.text,
+                                passwordController.text);
                           },
                         ),
                       SizedBox(
