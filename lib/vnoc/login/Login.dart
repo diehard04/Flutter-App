@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/vnoc/AtcVnocDashBoardReports.dart';
 import 'package:flutter_app/vnoc/animations/FadeAnimation.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 
 class Login extends StatefulWidget {
   final bool isLoading = false;
@@ -31,13 +30,33 @@ class LoginState extends State<Login> {
   }
 
   signIn(String email, pass) async {
+    print("email = " + email + " pwd = " + pass);
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map data = {'email': email, 'password': pass};
-    String loginURL = 'https://vnoc.atctower.in/VNOCMobileApi/AuthenticateUser';
-    var jsonResponse = null;
-    var response = await http.post(loginURL, body: data);
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
+    Map data = {
+      'userDeviceID': 'ATCDEMO',
+      'userID': email,
+      'password': pass,
+      'token': 'NA',
+      'accountID': 'NA',
+      'accountName': "NA",
+      'osType': '0',
+      'userType': 'NA',
+      'UsersApkVersion': '1.2.8',
+      'Device': 'Android'
+    };
+
+    //http://182.76.82.106/ATCVNOCMobileApi/AuthenticateUser
+    //String loginURL = 'https://vnoc.atctower.in/VNOCMobileApi/AuthenticateUser';
+
+    String loginURL = 'http://182.76.82.106/ATCVNOCMobileApi/AuthenticateUser';
+    String jsonBody = json.encode(data);
+    print("json body = " + jsonBody);
+
+    http.Response response = await http.post(loginURL,
+        body: jsonBody, headers: {"Accept": "application/json"});
+    print("response= " + response.toString());
+    var jsonResponse = json.decode(response.body);
+    if (jsonResponse.statusCode == 200) {
       if (jsonResponse != null) {
         setState(() {
           _isLoading = false;
@@ -52,8 +71,9 @@ class LoginState extends State<Login> {
       setState(() {
         _isLoading = false;
       });
-      print(response.body);
+      print("response fail= " + response.body);
     }
+    print("response = " + response.body);
   }
 
   final TextEditingController accountIdController = new TextEditingController();
@@ -157,7 +177,9 @@ class LoginState extends State<Login> {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
-                                      border: Border(bottom: BorderSide(color: Colors.grey[100]))),
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: Colors.grey[100]))),
                                   child: TextFormField(
                                     controller: accountIdController,
                                     style: TextStyle(color: Colors.grey[400]),

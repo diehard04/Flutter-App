@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'file:///E:/DEMO/Flutter-App/lib/main/page_one.dart';
+import 'package:flutter_app/main/page_one.dart';
 
 class HomePage extends StatelessWidget {
   @override
