@@ -44,7 +44,8 @@ class LoginState extends State<Login> {
         });
         sharedPreferences.setString("token", jsonResponse['token']);
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => AtcVnocDashBoardReports()),
+            MaterialPageRoute(
+                builder: (BuildContext context) => AtcVnocDashBoardReports()),
             (Route<dynamic> route) => false);
       }
     } else {
@@ -156,22 +157,17 @@ class LoginState extends State<Login> {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Colors.grey[100]))),
+                                      border: Border(bottom: BorderSide(color: Colors.grey[100]))),
                                   child: TextFormField(
                                     controller: accountIdController,
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(color: Colors.white70),
+                                    style: TextStyle(color: Colors.grey[400]),
                                     decoration: InputDecoration(
-                                      icon: Icon(Icons.email,
-                                          color: Colors.white70),
+                                      icon: Icon(Icons.sim_card,
+                                          color: Colors.grey[400]),
                                       hintText: "Account Id",
-                                      border: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.white70)),
+                                      border: InputBorder.none,
                                       hintStyle:
-                                          TextStyle(color: Colors.white70),
+                                          TextStyle(color: Colors.grey[400]),
                                     ),
                                   ),
                                 ),
@@ -179,17 +175,14 @@ class LoginState extends State<Login> {
                                   padding: EdgeInsets.all(8.0),
                                   child: TextFormField(
                                     controller: userNameController,
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(color: Colors.white70),
+                                    style: TextStyle(color: Colors.grey[400]),
                                     decoration: InputDecoration(
-                                      icon: Icon(Icons.email,
-                                          color: Colors.white70),
+                                      icon: Icon(Icons.account_box,
+                                          color: Colors.grey[400]),
                                       hintText: "User Name",
-                                      border: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.white70)),
+                                      border: InputBorder.none,
                                       hintStyle:
-                                          TextStyle(color: Colors.white70),
+                                          TextStyle(color: Colors.grey[400]),
                                     ),
                                   ),
                                 ),
@@ -197,15 +190,14 @@ class LoginState extends State<Login> {
                                   padding: EdgeInsets.all(8.0),
                                   child: TextFormField(
                                     controller: passwordController,
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(color: Colors.white70),
+                                    style: TextStyle(color: Colors.grey[400]),
                                     decoration: InputDecoration(
-                                      icon: Icon(Icons.email,
-                                          color: Colors.white70),
+                                      icon: Icon(Icons.keyboard_hide,
+                                          color: Colors.grey[400]),
                                       hintText: "Password",
                                       border: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: Colors.white70)),
+                                              color: Colors.grey[400])),
                                       hintStyle:
                                           TextStyle(color: Colors.grey[400]),
                                     ),
@@ -223,7 +215,7 @@ class LoginState extends State<Login> {
                           child: Text(
                             "Login",
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.grey[600],
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
