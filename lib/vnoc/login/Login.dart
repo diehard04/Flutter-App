@@ -57,8 +57,8 @@ class LoginState extends State<Login> {
           'Content-Type': 'application/json',
           'Charset': 'utf-8'
         });
-    print("post response= " + response.body.toString());
-    var jsonResponse = json.decode(response.body);
+    var jsonResponse = jsonDecode(response.body.toString());
+    print("post response= " + jsonResponse.toString());
     if (jsonResponse.statusCode == 200) {
       // if (jsonResponse != null) {
       //   setState(() {
