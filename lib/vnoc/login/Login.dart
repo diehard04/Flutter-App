@@ -33,32 +33,30 @@ class LoginState extends State<Login> {
     print("email = " + email + " pwd = " + pass);
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> data = {
-      "userDeviceID": "ATCDEMO",
+      "userDeviceID": "a06227689bcb3fae",
       "userID": "$email",
       "password": "$pass",
       "token": "NA",
       "accountID": "NA",
       "accountName": "NA",
       "osType": "0",
-      "userType": "NA",
-      "UsersApkVersion": "1.2.8",
+      "userType": "",
+      "UsersApkVersion": "7",
       "Device": "Android"
     };
 
     //http://182.76.82.106/ATCVNOCMobileApi/AuthenticateUser
-    //String loginURL = 'https://vnoc.atctower.in/VNOCMobileApi/AuthenticateUser';
+    String loginURL = 'https://vnoc.atctower.in/VNOCMobileApi/AuthenticateUser';
 
-    String loginURL = 'http://182.76.82.106/ATCVNOCMobileApi/AuthenticateUser';
+    //String loginURL = 'http://182.76.82.106/ATCVNOCMobileApi/AuthenticateUser';
     String jsonBody = json.encode(data);
     print("json body = " + jsonBody);
 
-    http.Response response = await http.post(loginURL,
-        body: jsonBody, headers: {
-          'Content-Type': 'application/json',
-          'Charset': 'utf-8'
-        });
-    var jsonResponse = jsonDecode(response.body.toString());
-    print("post response= " + jsonResponse.toString());
+    var response = await http.post(loginURL,
+        body: jsonBody);
+    print("post response= " + response.body.toString());
+
+    var jsonResponse = jsonDecode(response.body);
     if (jsonResponse.statusCode == 200) {
       if (jsonResponse != null) {
         setState(() {
