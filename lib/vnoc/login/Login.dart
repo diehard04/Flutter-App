@@ -60,16 +60,16 @@ class LoginState extends State<Login> {
     var jsonResponse = jsonDecode(response.body.toString());
     print("post response= " + jsonResponse.toString());
     if (jsonResponse.statusCode == 200) {
-      // if (jsonResponse != null) {
-      //   setState(() {
-      //     _isLoading = false;
-      //   });
-      //   sharedPreferences.setString("token", jsonResponse['token']);
-      //   Navigator.of(context).pushAndRemoveUntil(
-      //       MaterialPageRoute(
-      //           builder: (BuildContext context) => AtcVnocDashBoardReports()),
-      //       (Route<dynamic> route) => false);
-      // }
+      if (jsonResponse != null) {
+        setState(() {
+          _isLoading = false;
+        });
+        sharedPreferences.setString("token", jsonResponse['token']);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (BuildContext context) => AtcVnocDashBoardReports()),
+            (Route<dynamic> route) => false);
+      }
     } else {
       setState(() {
         _isLoading = false;
