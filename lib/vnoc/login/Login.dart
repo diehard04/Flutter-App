@@ -32,17 +32,17 @@ class LoginState extends State<Login> {
   signIn(String email, pass) async {
     print("email = " + email + " pwd = " + pass);
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map data = {
-      'userDeviceID': 'ATCDEMO',
-      'userID': email,
-      'password': pass,
-      'token': 'NA',
-      'accountID': 'NA',
-      'accountName': "NA",
-      'osType': '0',
-      'userType': 'NA',
-      'UsersApkVersion': '1.2.8',
-      'Device': 'Android'
+    Map<String, String> data = {
+      "userDeviceID": "ATCDEMO",
+      "userID": "$email",
+      "password": "$pass",
+      "token": "NA",
+      "accountID": "NA",
+      "accountName": "NA",
+      "osType": "0",
+      "userType": "NA",
+      "UsersApkVersion": "1.2.8",
+      "Device": "Android"
     };
 
     //http://182.76.82.106/ATCVNOCMobileApi/AuthenticateUser
@@ -53,20 +53,23 @@ class LoginState extends State<Login> {
     print("json body = " + jsonBody);
 
     http.Response response = await http.post(loginURL,
-        body: jsonBody, headers: {"Accept": "application/json"});
-    print("response= " + response.toString());
+        body: jsonBody, headers: {
+          'Content-Type': 'application/json',
+          'Charset': 'utf-8'
+        });
+    print("post response= " + response.body.toString());
     var jsonResponse = json.decode(response.body);
     if (jsonResponse.statusCode == 200) {
-      if (jsonResponse != null) {
-        setState(() {
-          _isLoading = false;
-        });
-        sharedPreferences.setString("token", jsonResponse['token']);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (BuildContext context) => AtcVnocDashBoardReports()),
-            (Route<dynamic> route) => false);
-      }
+      // if (jsonResponse != null) {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   sharedPreferences.setString("token", jsonResponse['token']);
+      //   Navigator.of(context).pushAndRemoveUntil(
+      //       MaterialPageRoute(
+      //           builder: (BuildContext context) => AtcVnocDashBoardReports()),
+      //       (Route<dynamic> route) => false);
+      // }
     } else {
       setState(() {
         _isLoading = false;
