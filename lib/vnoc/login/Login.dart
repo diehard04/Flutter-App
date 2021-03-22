@@ -52,8 +52,7 @@ class LoginState extends State<Login> {
     String jsonBody = json.encode(data);
     print("json body = " + jsonBody);
 
-    http.Response response = await http.post(loginURL,
-        body: jsonBody);
+    http.Response response = await http.post(loginURL, body: jsonBody);
     print("post response= " + response.body.toString());
     //var jsonResponse = jsonDecode(response.body.toString());
 
@@ -69,21 +68,19 @@ class LoginState extends State<Login> {
 
         Map<String, dynamic> responseDetail = map['responseDetail'];
         String userDeviceID = responseDetail["userDeviceID"];
-        String userID  = responseDetail["userID"];
+        String userID = responseDetail["userID"];
         print("responseDetail = " + userID);
         String password = responseDetail["password"];
         String token = responseDetail["token"];
         String accountID = responseDetail["accountID"];
         String accountName = responseDetail["accountName"];
         String userType = responseDetail["userType"];
-        String UsersApkVersion  = responseDetail["UsersApkVersion"];
+        int UsersApkVersion = responseDetail["UsersApkVersion"];
         sharedPreferences.setString("token", token);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return AtcVnocDashBoardReports();
-                }),
-            (Route<dynamic> route) => false);
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (BuildContext context) {
+          return AtcVnocDashBoardReports();
+        }));
       }
     } else {
       setState(() {
