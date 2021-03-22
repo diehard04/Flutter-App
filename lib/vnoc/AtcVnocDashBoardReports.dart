@@ -1,13 +1,22 @@
 
 import 'package:flutter/material.dart';
 
-class AtcVnocDashBoardReports extends StatelessWidget {
+class AtcVnocDashBoardReports extends StatefulWidget {
+
+
+  @override
+  AtcVnocDashBoardReportsState createState() {
+    return AtcVnocDashBoardReportsState();
+  }
+}
+
+class AtcVnocDashBoardReportsState extends State<AtcVnocDashBoardReports> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      backgroundColor: Colors.amber,
+
+    );
   }
-
-
 }

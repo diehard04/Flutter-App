@@ -52,20 +52,37 @@ class LoginState extends State<Login> {
     String jsonBody = json.encode(data);
     print("json body = " + jsonBody);
 
-    var response = await http.post(loginURL,
+    http.Response response = await http.post(loginURL,
         body: jsonBody);
     print("post response= " + response.body.toString());
+    //var jsonResponse = jsonDecode(response.body.toString());
 
-    var jsonResponse = jsonDecode(response.body);
-    if (jsonResponse.statusCode == 200) {
-      if (jsonResponse != null) {
+    if (response.statusCode == 200) {
+      if (response != null) {
         setState(() {
           _isLoading = false;
         });
-        sharedPreferences.setString("token", jsonResponse['token']);
+        Map<String, dynamic> map = json.decode(response.body);
+        String status = map["response"]["status"];
+        //print("map= " + status);
+        String message = map["response"]["message"];
+
+        Map<String, dynamic> responseDetail = map['responseDetail'];
+        String userDeviceID = responseDetail["userDeviceID"];
+        String userID  = responseDetail["userID"];
+        print("responseDetail = " + userID);
+        String password = responseDetail["password"];
+        String token = responseDetail["token"];
+        String accountID = responseDetail["accountID"];
+        String accountName = responseDetail["accountName"];
+        String userType = responseDetail["userType"];
+        String UsersApkVersion  = responseDetail["UsersApkVersion"];
+        sharedPreferences.setString("token", token);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-                builder: (BuildContext context) => AtcVnocDashBoardReports()),
+                builder: (BuildContext context) {
+                  return AtcVnocDashBoardReports();
+                }),
             (Route<dynamic> route) => false);
       }
     } else {
