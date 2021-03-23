@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Constant.dart';
 
+
 class Dashboard extends StatefulWidget {
   final String title;
   Dashboard({Key key, this.title}) : super(key: key);
@@ -35,7 +36,7 @@ class DashboardState extends State<Dashboard> {
                 ), color: Color(0xFFf0f0f0),
               ),
             new ListTile(
-              leading: new Icon(Icons.home_filled),
+              leading: new Icon(Icons.home),
               title: new Text('Home'),
               trailing : new Text("96", style: TextStyle(fontWeight: FontWeight.bold),),
 
@@ -49,7 +50,7 @@ class DashboardState extends State<Dashboard> {
               title: new Text('About'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.of(context).pushNamed(HOME_SCREEN);
+                Navigator.of(context).pushNamed(ABOUT);
               },
             )
           ],
