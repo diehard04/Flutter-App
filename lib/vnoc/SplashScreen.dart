@@ -28,16 +28,14 @@ class SplashScreenState extends State<SplashScreen>
 
   void navigationPage() {
     //Navigator.of(context).pushReplacementNamed(LOGIN);
-    if(_token !=null) {
-      Navigator.push(
-          context, new MaterialPageRoute(builder: (context) {
-        return new Login();
-      }));
+    if(_token ==null) {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Login()),
+          ModalRoute.withName("/SplashScreen")
+      );
     } else {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (BuildContext context) {
-            return new AtcVnocDashBoardReports();
-          }));
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> AtcVnocDashBoardReports()),
+          ModalRoute.withName("/SplashScreen")
+      );
     }
   }
 
