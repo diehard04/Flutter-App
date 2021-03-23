@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/Constant.dart';
 import 'package:flutter_app/vnoc/utills/Global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'AtcVnocDashBoardReports.dart';
+import 'AtcVNOC.dart';
 import 'Constant.dart';
 import 'login/Login.dart';
 
@@ -33,7 +33,7 @@ class SplashScreenState extends State<SplashScreen>
           ModalRoute.withName("/SplashScreen")
       );
     } else {
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> AtcVnocDashBoardReports()),
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> AtcVNOC()),
           ModalRoute.withName("/SplashScreen")
       );
     }
