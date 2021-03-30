@@ -10,8 +10,8 @@ class About extends StatefulWidget {
 class AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black38,
+    return  MaterialApp(
+      theme: new ThemeData(primaryColor: Colors.black),
     );
   }
 }

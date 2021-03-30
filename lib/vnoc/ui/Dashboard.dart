@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/vnoc/AtcVNOC.dart';
+import 'package:flutter_app/vnoc/ui/About.dart';
 
 import '../Constant.dart';
 
@@ -41,16 +43,14 @@ class DashboardState extends State<Dashboard> {
               trailing : new Text("96", style: TextStyle(fontWeight: FontWeight.bold),),
 
               onTap : () {
-                Navigator.pop(context);
-                Navigator.of(context).pushNamed(HOME_SCREEN);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AtcVNOC()));
               },
             ),
             new ListTile(
               leading: new Image.asset('assets/images/about.png'),
               title: new Text('About'),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).pushNamed(ABOUT);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => About()));
               },
             )
           ],
