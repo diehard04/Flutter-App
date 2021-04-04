@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/ui/Dashboard.dart';
 class AtcVNOC extends StatelessWidget {
+  static const String routeName = '/';
+
   final appTitle = 'DASHBOARD';
 
   @override
