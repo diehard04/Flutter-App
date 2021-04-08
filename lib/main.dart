@@ -4,7 +4,6 @@ import 'package:flutter_app/cookbook/GridList.dart';
 import 'package:flutter_app/viewcontrollers/HomePage.dart';
 import 'package:flutter_app/vnoc/AtcVNOC.dart';
 import 'package:flutter_app/vnoc/SplashScreen.dart';
-import 'package:flutter_app/vnoc/Constant.dart';
 
 //void main() => runApp(MyApp());
 

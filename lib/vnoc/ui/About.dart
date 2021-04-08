@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-class About extends StatefulWidget {
-  @override
-  AboutState createState() {
-    return AboutState();
-  }
-}
+class About extends StatelessWidget {
 
-class AboutState extends State<About> {
+
+  final String pageTextChanged;
+  About(this.pageTextChanged);
+
+
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      theme: new ThemeData(primaryColor: Colors.black),
+    return Scaffold(
+      appBar: AppBar(title: Text(pageTextChanged),),
+      body: Center(
+        child: Text(pageTextChanged),
+      ),
     );
   }
+
 }

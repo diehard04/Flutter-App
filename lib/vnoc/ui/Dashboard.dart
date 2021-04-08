@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/AtcVNOC.dart';
 import 'package:flutter_app/vnoc/ui/About.dart';
 
-import '../Constant.dart';
-
-
 class Dashboard extends StatefulWidget {
-  final String title;
-  Dashboard({Key key, this.title}) : super(key: key);
+  final String title = "dashboard";
+  Dashboard({Key key}) : super(key: key);
 
   @override
   DashboardState createState() {
@@ -43,14 +40,16 @@ class DashboardState extends State<Dashboard> {
               trailing : new Text("96", style: TextStyle(fontWeight: FontWeight.bold),),
 
               onTap : () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AtcVNOC()));
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AtcVNOC("Dash Board")));
               },
             ),
             new ListTile(
               leading: new Image.asset('assets/images/about.png'),
               title: new Text('About'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => About()));
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => About("About")));
               },
             )
           ],

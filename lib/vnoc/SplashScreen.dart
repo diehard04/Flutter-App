@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/vnoc/Constant.dart';
+import 'package:flutter_app/vnoc/ui/Dashboard.dart';
 import 'package:flutter_app/vnoc/utills/Global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'AtcVNOC.dart';
-import 'Constant.dart';
 import 'login/Login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -33,7 +32,7 @@ class SplashScreenState extends State<SplashScreen>
           ModalRoute.withName("/SplashScreen")
       );
     } else {
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> AtcVNOC()),
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Dashboard()),
           ModalRoute.withName("/SplashScreen")
       );
     }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/AtcVNOC.dart';
 import 'package:flutter_app/vnoc/animations/FadeAnimation.dart';
+import 'package:flutter_app/vnoc/ui/Dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -79,7 +80,7 @@ class LoginState extends State<Login> {
         sharedPreferences.setString("token", token);
         Navigator.of(context).push(
             MaterialPageRoute(builder: (BuildContext context) {
-          return AtcVNOC();
+          return Dashboard();
         }));
       }
     } else {
