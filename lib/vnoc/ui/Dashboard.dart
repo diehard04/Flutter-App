@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/AtcVNOC.dart';
+import 'package:flutter_app/vnoc/expention/expansion_pannel_demo.dart';
 import 'package:flutter_app/vnoc/ui/About.dart';
 
 class Dashboard extends StatefulWidget {
@@ -51,7 +52,17 @@ class DashboardState extends State<Dashboard> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => About("About")));
               },
+            ),
+
+            new ListTile(
+              leading: new Image.asset('assets/images/about.png'),
+              title: new Text('Expansion demo'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExpansionPanelDemo()));
+              },
             )
+
           ],
         ),
       ),
