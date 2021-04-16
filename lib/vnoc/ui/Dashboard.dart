@@ -1,72 +1,123 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/vnoc/AtcVNOC.dart';
-import 'package:flutter_app/vnoc/expention/expansion_pannel_demo.dart';
-import 'package:flutter_app/vnoc/ui/About.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'drawer_widget.dart';
+import 'nav_drawer_bloc.dart';
+import 'nav_drawer_state.dart';
 
-class Dashboard extends StatefulWidget {
-  final String title = "dashboard";
-  Dashboard({Key key}) : super(key: key);
-
+class Dashboard extends StatelessWidget {
   @override
-  DashboardState createState() {
-    return DashboardState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Navigation Drawer Demo',
+      theme: ThemeData(primarySwatch: Colors.blue, scaffoldBackgroundColor: Colors.white),
+      home: MyHomePage(),
+    );
+    ;
   }
 }
 
-class DashboardState extends State<Dashboard> {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  NavDrawerBloc _bloc;
+  Widget _content;
 
   @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          new IconButton(icon: Icon(Icons.search), onPressed: () {}),
-          new IconButton(icon: Icon(Icons.more_vert), onPressed: (){}),
-        ],
-      ),
-
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-              new Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: new Image.asset('assets/images/logo.png'),
-                ), color: Color(0xFFf0f0f0),
-              ),
-            new ListTile(
-              leading: new Icon(Icons.home),
-              title: new Text('Home'),
-              trailing : new Text("96", style: TextStyle(fontWeight: FontWeight.bold),),
-
-              onTap : () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AtcVNOC("Dash Board")));
-              },
-            ),
-            new ListTile(
-              leading: new Image.asset('assets/images/about.png'),
-              title: new Text('About'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => About("About")));
-              },
-            ),
-
-            new ListTile(
-              leading: new Image.asset('assets/images/about.png'),
-              title: new Text('Expansion demo'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExpansionPanelDemo()));
-              },
-            )
-
-          ],
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
+    _bloc = NavDrawerBloc();
+    _content = _getContentForState(_bloc.state.selectedItem);
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => BlocProvider<NavDrawerBloc>(
+      create: (BuildContext context) => _bloc,
+      child: BlocListener<NavDrawerBloc, NavDrawerState>(
+        listener: (BuildContext context, NavDrawerState state) {
+          setState(() {
+            _content = _getContentForState(state.selectedItem);
+          });
+        },
+        child: BlocBuilder<NavDrawerBloc, NavDrawerState>(
+          builder: (BuildContext context, NavDrawerState state) => Scaffold(
+            drawer: NavDrawerWidget("AskNilesh", "rathodnilsrk@gmail.com"),
+            appBar: AppBar(
+              title: Text(_getAppbarTitle(state.selectedItem)),
+              centerTitle: false,
+              brightness: Brightness.light,
+              backgroundColor: Colors.indigo,
+            ),
+            body: AnimatedSwitcher(
+              switchInCurve: Curves.easeInExpo,
+              switchOutCurve: Curves.easeOutExpo,
+              duration: Duration(milliseconds: 300),
+              child: _content,
+            ),
+          ),
+        ),
+      ));
+
+  _getAppbarTitle(NavItem state) {
+    switch (state) {
+      case NavItem.homePage:
+        return 'Home';
+      case NavItem.profilePage:
+        return 'Profile Page';
+      case NavItem.orderPage:
+        return 'My Orders';
+      case NavItem.myCart:
+        return 'My Cart';
+      default:
+        return '';
+    }
+  }
+
+  _getContentForState(NavItem state) {
+    switch (state) {
+      case NavItem.homePage:
+        return Center(
+          child: Text(
+            'Home Page',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        );
+      case NavItem.profilePage:
+        return Center(
+          child: Text(
+            'Profile Page',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        );
+      case NavItem.orderPage:
+        return Center(
+          child: Text(
+            'My Orders',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        );
+      case NavItem.myCart:
+        return Center(
+          child: Text(
+            'My Cart',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        );
+      default:
+        return Center(
+          child: Text(
+            'Home Page',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        );
+    }
+  }
 }

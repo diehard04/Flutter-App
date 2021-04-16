@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatelessWidget {
-
-
-  final String pageTextChanged;
-  About(this.pageTextChanged);
-
-
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(pageTextChanged),),
-      body: Center(
-        child: Text(pageTextChanged),
+  Widget build(BuildContext content) {
+    return Padding(
+      padding: EdgeInsets.all(150.0),
+      child: new FlatButton(
+        disabledColor: Colors.transparent,
+        onPressed: _launchURL,
+        child: Image.asset('images/git.png'),
+        // label: new Text('Github'),
       ),
     );
   }
+}
 
+_launchURL() async {
+  const url = 'https://github.com/sahq-azhar';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
