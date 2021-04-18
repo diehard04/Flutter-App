@@ -9,7 +9,7 @@ class About extends StatelessWidget {
       child: new FlatButton(
         disabledColor: Colors.transparent,
         onPressed: _launchURL,
-        child: Image.asset('images/git.png'),
+        child: Image.asset('assets/images/logo.png'),
         // label: new Text('Github'),
       ),
     );
