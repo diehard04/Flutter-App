@@ -52,7 +52,7 @@ class MyDrawer extends StatelessWidget {
           .width * 0.8,
       child: Drawer(
         child: Container(
-          color: Colors.blueGrey,
+          color: Colors.white,
           child: ListView(
             padding: EdgeInsets.all(0),
             children: <Widget>[
