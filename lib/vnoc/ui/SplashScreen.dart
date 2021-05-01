@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/vnoc/ui/Dashboard.dart';
 import 'package:flutter_app/vnoc/utills/Global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'AtcVNOC.dart';
+import 'home/AtcVNOC.dart';
 import '../login/Login.dart';
 
 class SplashScreen extends StatefulWidget {

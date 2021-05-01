@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/vnoc/ui/About.dart';
-import 'package:flutter_app/vnoc/ui/AtcVNOC.dart';
+import 'file:///E:/DEMO/Flutter/Flutter-App/lib/vnoc/ui/about/About.dart';
+import 'file:///E:/DEMO/Flutter/Flutter-App/lib/vnoc/ui/home/AtcVNOC.dart';
 
 import 'expention/expansion_pannel_demo.dart';
 

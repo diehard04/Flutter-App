@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/cookbook/GridList.dart';
 import 'package:flutter_app/viewcontrollers/HomePage.dart';
-import 'package:flutter_app/vnoc/ui/AtcVNOC.dart';
+import 'file:///E:/DEMO/Flutter/Flutter-App/lib/vnoc/ui/home/AtcVNOC.dart';
 import 'package:flutter_app/vnoc/ui/SplashScreen.dart';
 
 //void main() => runApp(MyApp());
